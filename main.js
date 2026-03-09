@@ -135,6 +135,36 @@ function initShowcaseSwiper() {
   root.addEventListener("mouseleave", () => swiper.autoplay?.start());
 }
 
+function initStudentsSwiper() {
+  const root = document.querySelector(".students-swiper");
+  if (!root || typeof Swiper === "undefined") return;
+
+  const swiper = new Swiper(root, {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    speed: 800,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    pagination: {
+      el: root.querySelector(".swiper-pagination"),
+      clickable: true,
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 1,
+        spaceBetween: 40,
+      }
+    }
+  });
+
+  root.addEventListener("mouseenter", () => swiper.autoplay?.stop());
+  root.addEventListener("mouseleave", () => swiper.autoplay?.start());
+}
+
 function initTheme() {
   const toggleBtn = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
@@ -331,5 +361,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initParallaxOnScroll();
   initRipple();
+  initStudentsSwiper();
 });
 
