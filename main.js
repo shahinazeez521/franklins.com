@@ -1,12 +1,3 @@
-/* ==========================================================================
-   Franklin's Lectures — cinematic motion system (from scratch)
-   - IntersectionObserver reveals (fade up + mask reveal + stagger)
-   - Mouse parallax (hero shapes)
-   - 3D tilt interaction (cards + hero frame)
-   - Swiper premium showcase (depth + autoplay + bg blur sync)
-   - CTA ripple
-   ========================================================================== */
-
 function initReveal() {
   const els = document.querySelectorAll(".reveal, .mask-reveal");
   if (!els.length) return;
@@ -140,7 +131,6 @@ function initShowcaseSwiper() {
     },
   });
 
-  // Extra pause control to keep it premium
   root.addEventListener("mouseenter", () => swiper.autoplay?.stop());
   root.addEventListener("mouseleave", () => swiper.autoplay?.start());
 }
@@ -160,8 +150,6 @@ function initTheme() {
     }
     localStorage.setItem('theme', theme);
   };
-
-  // Set initial icon
   const currentTheme = localStorage.getItem('theme') || 'light';
   setTheme(currentTheme);
 
@@ -172,28 +160,21 @@ function initTheme() {
     });
   }
 }
-
 function initMobileMenu() {
   const btn = document.getElementById("mobile-menu-btn");
   const close = document.getElementById("mobile-menu-close");
   const menu = document.getElementById("mobile-menu");
   const links = document.querySelectorAll(".mobile-nav-link");
-
   if (!btn || !menu) return;
-
   const toggleMenu = (open) => {
     menu.classList.toggle("translate-x-full", !open);
     document.body.classList.toggle("overflow-hidden", open);
   };
-
   btn.addEventListener("click", () => toggleMenu(true));
   if (close) close.addEventListener("click", () => toggleMenu(false));
-
   links.forEach(link => {
     link.addEventListener("click", () => toggleMenu(false));
   });
-
-  // Close on escape
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") toggleMenu(false);
   });
@@ -212,7 +193,7 @@ function initNavbarScroll() {
   };
 
   window.addEventListener("scroll", updateNav, { passive: true });
-  updateNav(); // Initial check
+  updateNav();
 }
 
 function initParallaxOnScroll() {
@@ -240,7 +221,6 @@ function initParallaxOnScroll() {
   );
   update();
 }
-
 function initRipple() {
   const buttons = Array.from(document.querySelectorAll("[data-ripple]"));
   for (const btn of buttons) {
@@ -262,20 +242,15 @@ function initRipple() {
     });
   }
 }
-
 function initHeroEntrance() {
   if (typeof gsap === "undefined") return;
   const frame = document.querySelector(".hero-frame");
   if (!frame) return;
-
-  // Hero reveal logic is now triggered after preloader or on load
   gsap.fromTo(
     frame,
     { y: 40, opacity: 0, scale: 0.98, rotateX: 5 },
     { y: 0, opacity: 1, scale: 1, rotateX: 0, duration: 1.4, ease: "expo.out", delay: 0.1 }
   );
-
-  // Stagger reveal other hero elements
   gsap.from(".hero-reveal", {
     y: 40,
     opacity: 0,
@@ -285,14 +260,10 @@ function initHeroEntrance() {
     delay: 0.4
   });
 }
-
 function initPreloader() {
   const preloader = document.getElementById("preloader");
   if (!preloader || typeof gsap === "undefined") return;
-
   const tl = gsap.timeline();
-
-  // 1. Entrance: Logo & Glow
   tl.to("#preloader-logo-container", {
     opacity: 1,
     y: 0,
@@ -311,19 +282,16 @@ function initPreloader() {
       ease: "power3.out"
     }, "-=1.4")
     .to("#preloader-bar", {
-      width: "45%", // Simulated progress
+      width: "45%",
       duration: 3,
       ease: "power1.inOut"
     }, "-=1");
-
-  // 2. Transition to site
   const startTransition = () => {
     const exitTl = gsap.timeline({
-      delay: 0.2, // Small beat of stillness
+      delay: 0.2,
       onComplete: () => {
         preloader.style.display = "none";
         document.body.classList.remove("overflow-hidden");
-        // Trigger hero after preloader is gone
         initHeroEntrance();
       }
     });
@@ -341,20 +309,17 @@ function initPreloader() {
         ease: "power4.in"
       })
       .to(preloader, {
-        yPercent: -100, // Premium slide up
+        yPercent: -100,
         duration: 1.2,
         ease: "expo.inOut"
       }, "-=0.5");
   };
-
-  // If page is already loaded, transition immediately after entrance
   if (document.readyState === "complete") {
     startTransition();
   } else {
     window.addEventListener("load", startTransition);
   }
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   initPreloader();
   initReveal();

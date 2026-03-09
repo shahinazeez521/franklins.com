@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Franklin's Lectures — premium cinematic landing (from scratch)
-   Tech: Tailwind + this CSS layer (glass, noise, 3D, masks, micro-motion)
-   Palette preserved: primary #dab600, secondary tone #fff9ae
-   ========================================================================== */
 
 :root {
   /* Light Theme Variables */
@@ -13,9 +8,7 @@
   --bg-page: #ffffff;
   --bg-canvas: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.45));
   --text-main: 15, 23, 42;
-  /* slate-900 approx */
   --text-muted: 51, 65, 85;
-  /* slate-700 approx */
   --glass: rgba(255, 255, 255, 0.58);
   --glass-strong: rgba(255, 255, 255, 0.74);
   --glass-nav: rgba(255, 255, 255, 0.65);
@@ -33,11 +26,8 @@
   --bg-canvas: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
   --primary-rgb: 218, 182, 0;
   --secondary-rgb: 100, 80, 20;
-  /* Darker gold/brown tint for gradients */
   --text-main: 248, 250, 252;
-  /* slate-50 */
   --text-muted: 156, 163, 175;
-  /* slate-400 */
   --glass: rgba(15, 15, 15, 0.65);
   --glass-strong: rgba(20, 20, 20, 0.85);
   --glass-nav: rgba(5, 5, 5, 0.8);
@@ -72,7 +62,7 @@ h6 {
   color: rgb(var(--text-main));
 }
 
-/* ------------------ Premium layered backgrounds ------------------ */
+/*Premium layered backgrounds  */
 .bg-premium-canvas {
   background:
     radial-gradient(1100px 520px at 12% 18%, rgba(var(--primary-rgb), 0.18), transparent 62%),
@@ -80,15 +70,12 @@ h6 {
     radial-gradient(980px 560px at 78% 88%, rgba(var(--primary-rgb), 0.14), transparent 60%),
     var(--bg-canvas);
 }
-
-/* Subtle SVG noise via CSS (tiny data URI, perf-safe) */
 .bg-noise {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
   background-size: 180px 180px;
   opacity: var(--noise-opacity);
 }
 
-/* Light rays */
 .bg-rays {
   background:
     conic-gradient(from 220deg at 50% 0%,
@@ -110,8 +97,6 @@ h6 {
     radial-gradient(850px 520px at 80% 20%, rgba(var(--secondary-rgb), 0.55), transparent 62%),
     radial-gradient(900px 520px at 70% 90%, rgba(var(--primary-rgb), 0.10), transparent 60%);
 }
-
-/* ------------------ Navigation & Header ------------------ */
 nav {
   position: fixed;
   top: 0;
@@ -123,7 +108,6 @@ nav {
   padding: 24px 0;
   border-bottom: 1px solid transparent;
 }
-
 nav.scrolled {
   background: var(--glass-nav);
   backdrop-filter: blur(28px) saturate(180%);
@@ -132,17 +116,14 @@ nav.scrolled {
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
   border-bottom: 1px solid var(--glass-border);
 }
-
 .nav-link {
   position: relative;
   transition: color 260ms ease;
   color: rgba(var(--text-muted), 0.9);
 }
-
 .nav-link:hover {
   color: var(--primary);
 }
-
 .nav-link::after {
   content: "";
   position: absolute;
@@ -156,12 +137,10 @@ nav.scrolled {
   transition: transform 320ms ease;
   opacity: 0.9;
 }
-
 .nav-link:hover::after {
   transform: scaleX(1);
 }
-
-/* ------------------ Buttons ------------------ */
+/*Buttons*/
 .btn {
   display: inline-flex;
   align-items: center;
@@ -175,27 +154,22 @@ nav.scrolled {
   will-change: transform;
   user-select: none;
 }
-
 .btn-xl {
   padding: 16px 22px;
   border-radius: 20px;
 }
-
 .btn-primary {
   background: var(--primary);
   color: rgb(var(--btn-text));
   box-shadow: 0 18px 45px rgba(var(--primary-rgb), 0.35);
 }
-
 .btn-primary:hover {
   transform: translate3d(0, -2px, 0);
   box-shadow: 0 26px 60px rgba(var(--primary-rgb), 0.42);
 }
-
 .btn-primary:active {
   transform: translate3d(0, 0, 0) scale(0.99);
 }
-
 .btn-glass {
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -203,20 +177,16 @@ nav.scrolled {
   -webkit-backdrop-filter: blur(14px);
   color: rgb(var(--text-main));
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
-  /* shadow-md ref */
 }
-
 .btn-glass:hover {
   transform: translate3d(0, -2px, 0);
   border-color: rgba(218, 182, 0, 0.35);
 }
-
 .btn-modern {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
-
 .btn-modern::after {
   content: "";
   position: absolute;
@@ -227,13 +197,10 @@ nav.scrolled {
   transition: transform 520ms ease, opacity 520ms ease;
   z-index: -1;
 }
-
 .btn-modern:hover::after {
   transform: translate3d(0, 0, 0) scale(1);
   opacity: 1;
 }
-
-/* ------------------ Hero text reveal ------------------ */
 @keyframes hero-reveal {
   from {
     opacity: 0;
@@ -247,22 +214,17 @@ nav.scrolled {
     filter: blur(0);
   }
 }
-
 .hero-reveal {
   display: inline-block;
   opacity: 0;
   animation: hero-reveal 950ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
-
 .hero-reveal.delay-1 {
   animation-delay: 120ms;
 }
-
 .hero-reveal.delay-2 {
   animation-delay: 240ms;
 }
-
-/* ------------------ Chips ------------------ */
 .glass-chip {
   border-radius: 18px;
   padding: 14px 14px;
@@ -272,8 +234,6 @@ nav.scrolled {
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.05);
 }
-
-/* ------------------ Scroll indicator ------------------ */
 .scroll-indicator {
   position: absolute;
   left: 50%;
@@ -290,7 +250,6 @@ nav.scrolled {
   display: grid;
   place-items: center;
 }
-
 .scroll-dot {
   width: 7px;
   height: 7px;
@@ -299,7 +258,6 @@ nav.scrolled {
   box-shadow: 0 0 24px rgba(var(--primary-rgb), 0.55);
   animation: scroll-bounce 1.4s ease-in-out infinite;
 }
-
 @keyframes scroll-bounce {
 
   0%,
@@ -314,7 +272,6 @@ nav.scrolled {
   }
 }
 
-/* ------------------ Floating motion ------------------ */
 @keyframes float {
 
   0%,
@@ -326,7 +283,6 @@ nav.scrolled {
     transform: translate3d(0, -14px, 0);
   }
 }
-
 @keyframes float-slow {
 
   0%,
@@ -338,43 +294,32 @@ nav.scrolled {
     transform: translate3d(0, -9px, 0);
   }
 }
-
 .floating {
   animation: float 6.8s ease-in-out infinite;
 }
-
 .floating-slow {
   animation: float-slow 9.5s ease-in-out infinite;
 }
-
 @keyframes hero-float {
-
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
-
   50% {
     transform: translate3d(0, -12px, 0) scale(1.015);
   }
 }
-
 .hero-float {
   animation: hero-float 7.4s ease-in-out infinite;
   will-change: transform;
 }
-
-/* ------------------ 3D tilt base ------------------ */
 .tilt-card {
   transform-style: preserve-3d;
   will-change: transform;
 }
-
 .hero-frame {
   perspective: 1200px;
 }
-
-/* Reflections */
 .reflect {
   pointer-events: none;
   position: absolute;
@@ -391,7 +336,6 @@ nav.scrolled {
   opacity: var(--reflect-opacity);
 }
 
-/* ------------------ Feature cards ------------------ */
 .feature-card {
   position: relative;
   border-radius: 24px;
@@ -404,13 +348,11 @@ nav.scrolled {
   overflow: hidden;
   transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
 }
-
 .feature-card:hover {
   transform: translate3d(0, -8px, 0);
   border-color: rgba(218, 182, 0, 0.32);
   box-shadow: 0 40px 95px rgba(0, 0, 0, 0.18);
 }
-
 .feature-icon {
   width: 46px;
   height: 46px;
@@ -421,18 +363,15 @@ nav.scrolled {
   border: 1px solid rgba(var(--primary-rgb), 0.25);
   box-shadow: 0 18px 40px rgba(var(--primary-rgb), 0.18);
 }
-
 .feature-icon .material-symbols-outlined {
   color: rgb(218 182 0);
   font-size: 22px;
   transition: transform 280ms ease;
 }
-
 .feature-card:hover .feature-icon .material-symbols-outlined {
   transform: translate3d(0, -2px, 0) rotate(-6deg);
 }
-
-/* ------------------ Swiper showcase ------------------ */
+/* swiper showcase */
 .showcase-shell {
   position: relative;
   border-radius: 28px;
@@ -443,7 +382,6 @@ nav.scrolled {
   box-shadow: var(--card-shadow);
   overflow: hidden;
 }
-
 .showcase-bg {
   position: absolute;
   inset: -18%;
@@ -455,11 +393,9 @@ nav.scrolled {
   background-size: cover;
   background-position: center;
 }
-
 .showcase-swiper {
   padding: 28px 18px 44px;
 }
-
 .showcase-slide {
   position: relative;
   border-radius: 24px;
@@ -468,7 +404,6 @@ nav.scrolled {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
   background: var(--glass);
 }
-
 .showcase-slide img {
   width: 100%;
   height: 440px;
@@ -476,11 +411,9 @@ nav.scrolled {
   transform: translateZ(30px);
   transition: transform 650ms ease;
 }
-
 .showcase-slide:hover img {
   transform: translateZ(30px) scale(1.05);
 }
-
 .swiper-btn {
   width: 46px;
   height: 46px;
@@ -494,31 +427,26 @@ nav.scrolled {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
   transition: transform 240ms ease, background-color 240ms ease, border-color 240ms ease;
 }
-
 .swiper-btn:hover {
   transform: translate3d(0, -2px, 0);
   background: rgba(218, 182, 0, 0.85);
   border-color: rgba(218, 182, 0, 0.55);
 }
-
 .swiper-btn:hover .material-symbols-outlined {
   color: rgb(15 23 42);
 }
-
 .swiper-pagination-bullet {
   background: rgba(15, 23, 42, 0.25) !important;
   width: 10px !important;
   height: 10px !important;
   opacity: 1 !important;
 }
-
 .swiper-pagination-bullet-active {
   background: var(--primary) !important;
   width: 28px !important;
   border-radius: 999px !important;
   box-shadow: 0 10px 24px rgba(var(--primary-rgb), 0.35);
 }
-
 /* Swiper depth feel */
 .swiper-slide {
   opacity: 0.55;
@@ -533,7 +461,7 @@ nav.scrolled {
   filter: blur(0);
 }
 
-/* ------------------ Story cards + mask reveal ------------------ */
+/* Story cards + mask reveal */
 .story-card {
   position: relative;
   border-radius: 24px;
@@ -561,7 +489,7 @@ nav.scrolled {
   margin-bottom: 12px;
 }
 
-/* ------------------ Reveal system (IntersectionObserver) ------------------ */
+/*Reveal system :  IntersectionObserver  */
 .reveal {
   opacity: 0;
   transform: translate3d(0, 18px, 0);
@@ -571,25 +499,20 @@ nav.scrolled {
     filter 850ms cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: opacity, transform, filter;
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0);
   filter: blur(0);
 }
-
 .stagger-1 {
   transition-delay: 120ms;
 }
-
 .stagger-2 {
   transition-delay: 240ms;
 }
-
 .stagger-3 {
   transition-delay: 360ms;
 }
-
 /* Mask reveal */
 .mask-reveal {
   clip-path: inset(0 0 100% 0 round 24px);
@@ -598,12 +521,10 @@ nav.scrolled {
     transform 850ms cubic-bezier(0.2, 0.8, 0.2, 1),
     filter 850ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
 .mask-reveal.is-visible {
   clip-path: inset(0 0 0 0 round 24px);
 }
-
-/* ------------------ CTA shell ------------------ */
+/* CTA shell*/
 .cta-shell {
   position: relative;
   border-radius: 30px;
@@ -613,7 +534,6 @@ nav.scrolled {
   background: rgba(15, 23, 42, 0.92);
   box-shadow: 0 45px 120px rgba(2, 6, 23, 0.35);
 }
-
 .cta-bg {
   position: absolute;
   inset: -40%;
@@ -629,7 +549,6 @@ nav.scrolled {
   animation: cta-motion 10s ease-in-out infinite;
   opacity: 0.95;
 }
-
 @keyframes cta-motion {
 
   0%,
@@ -641,7 +560,6 @@ nav.scrolled {
     transform: translate3d(3%, 2%, 0) rotate(5deg) scale(1.05);
   }
 }
-
 /* Ripple effect helper (JS inserts span) */
 .ripple {
   position: absolute;
@@ -652,7 +570,6 @@ nav.scrolled {
   animation: ripple 700ms ease-out forwards;
   mix-blend-mode: overlay;
 }
-
 @keyframes ripple {
   from {
     width: 0;
@@ -667,9 +584,8 @@ nav.scrolled {
   }
 }
 
-/* ------------------ Reduced motion ------------------ */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-
   .floating,
   .floating-slow,
   .hero-float,
@@ -677,7 +593,6 @@ nav.scrolled {
   .scroll-dot {
     animation: none !important;
   }
-
   .reveal,
   .mask-reveal {
     transition: none !important;

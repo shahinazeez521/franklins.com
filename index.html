@@ -32,7 +32,7 @@
     };
   </script>
   <script>
-    // Initialize theme ASAP to prevent flash
+
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     if (savedTheme === 'dark') document.documentElement.classList.add('dark');
