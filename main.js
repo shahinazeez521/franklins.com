@@ -145,6 +145,34 @@ function initShowcaseSwiper() {
   root.addEventListener("mouseleave", () => swiper.autoplay?.start());
 }
 
+function initTheme() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+
+  const setTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      if (themeIcon) themeIcon.textContent = 'dark_mode';
+    } else {
+      document.documentElement.classList.remove('dark');
+      if (themeIcon) themeIcon.textContent = 'light_mode';
+    }
+    localStorage.setItem('theme', theme);
+  };
+
+  // Set initial icon
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  setTheme(currentTheme);
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    });
+  }
+}
+
 function initMobileMenu() {
   const btn = document.getElementById("mobile-menu-btn");
   const close = document.getElementById("mobile-menu-close");
@@ -335,6 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initShowcaseSwiper();
   initNavbarScroll();
   initMobileMenu();
+  initTheme();
   initParallaxOnScroll();
   initRipple();
 });
