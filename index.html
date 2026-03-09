@@ -45,8 +45,7 @@
       </div>
       <div class="mt-8 overflow-hidden h-6 flex items-center justify-center">
         <div id="preloader-text" class="translate-y-full opacity-0">
-          <span class="text-[10px] sm:text-xs font-black tracking-[0.5em] uppercase text-slate-800">Franklin's
-            Lectures</span>
+
         </div>
       </div>
       <div class="mt-12 w-32 h-[1px] bg-slate-200 relative overflow-hidden rounded-full">
@@ -72,21 +71,54 @@
           <a href="#features" class="nav-link">Features</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#students" class="nav-link">Students</a>
-          <a href="#cta" class="nav-link">Get Started</a>
         </div>
-        <a href="#cta" class="btn btn-primary btn-modern hidden sm:inline-flex">
-          Enroll Now
-          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-        </a>
+        <div class="flex items-center gap-4">
+          <a href="#cta" class="btn btn-primary btn-modern hidden sm:inline-flex">
+            Enroll Now
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+          <button id="mobile-menu-btn"
+            class="md:hidden flex items-center p-2 text-slate-700 hover:text-primary transition-colors"
+            aria-label="Open menu">
+            <span class="material-symbols-outlined text-[30px]">menu</span>
+          </button>
+        </div>
       </div>
     </nav>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu"
+      class="fixed inset-0 z-[1100] bg-white/98 backdrop-blur-2xl translate-x-full transition-transform duration-500 ease-in-out md:hidden">
+      <div class="flex flex-col h-full overflow-y-auto">
+        <div class="flex items-center justify-between p-6 border-b border-primary/10">
+          <img src="logo_franklins.png" alt="Franklin's Lectures Logo" class="h-8 w-auto object-contain" />
+          <button id="mobile-menu-close" class="p-2 text-slate-700 hover:text-primary transition-colors"
+            aria-label="Close menu">
+            <span class="material-symbols-outlined text-[32px]">close</span>
+          </button>
+        </div>
+        <div class="flex flex-col p-8 gap-8">
+          <div class="flex flex-col gap-4">
+            <p class="text-[10px] uppercase tracking-[0.3em] font-black text-primary/60">Navigation</p>
+            <a href="#courses" class="mobile-nav-link text-3xl font-black text-slate-900">Courses</a>
+            <a href="#jobs" class="mobile-nav-link text-3xl font-black text-slate-900">Career</a>
+            <a href="#features" class="mobile-nav-link text-3xl font-black text-slate-900">Features</a>
+            <a href="#about" class="mobile-nav-link text-3xl font-black text-slate-900">About</a>
+            <a href="#students" class="mobile-nav-link text-3xl font-black text-slate-900">Students</a>
+          </div>
+          <div class="mt-4 pt-8 border-t border-primary/10">
+            <a href="#cta" class="btn btn-primary btn-xl w-full mobile-nav-link">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="absolute inset-0 -z-0">
       <div class="absolute -top-32 -left-40 size-[520px] rounded-full bg-primary/20 blur-[90px]"></div>
       <div class="absolute -bottom-40 -right-48 size-[640px] rounded-full bg-background-light/60 blur-[100px]"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/30 to-white/10"></div>
     </div>
-    <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-16">
+    <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-28 sm:pt-40 pb-16">
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
         <div class="space-y-8">
 
@@ -107,7 +139,7 @@
             <a href="#showcase" class="btn btn-glass">Explore the Experience <span
                 class="material-symbols-outlined text-[18px]">play_arrow</span></a>
           </div>
-          <div class="grid grid-cols-3 gap-4 pt-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
             <div class="glass-chip reveal">
               <div class="text-2xl font-black">200+</div>
               <div class="text-[11px] uppercase tracking-widest text-slate-600">Partners</div>
@@ -141,7 +173,7 @@
               </div>
             </div>
             <img src="image_hero.png" alt="Premium learning workspace"
-              class="relative z-10 w-full h-[520px] sm:h-[560px] object-cover hero-float" loading="eager"
+              class="relative z-10 w-full h-[340px] sm:h-[480px] lg:h-[560px] object-cover hero-float" loading="eager"
               decoding="async" fetchpriority="high" />
             <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/10 via-transparent to-white/15"></div>
             <div class="reflect"></div>

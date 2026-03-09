@@ -145,6 +145,32 @@ function initShowcaseSwiper() {
   root.addEventListener("mouseleave", () => swiper.autoplay?.start());
 }
 
+function initMobileMenu() {
+  const btn = document.getElementById("mobile-menu-btn");
+  const close = document.getElementById("mobile-menu-close");
+  const menu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".mobile-nav-link");
+
+  if (!btn || !menu) return;
+
+  const toggleMenu = (open) => {
+    menu.classList.toggle("translate-x-full", !open);
+    document.body.classList.toggle("overflow-hidden", open);
+  };
+
+  btn.addEventListener("click", () => toggleMenu(true));
+  if (close) close.addEventListener("click", () => toggleMenu(false));
+
+  links.forEach(link => {
+    link.addEventListener("click", () => toggleMenu(false));
+  });
+
+  // Close on escape
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") toggleMenu(false);
+  });
+}
+
 function initNavbarScroll() {
   const nav = document.querySelector("nav");
   if (!nav) return;
@@ -308,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTilt();
   initShowcaseSwiper();
   initNavbarScroll();
+  initMobileMenu();
   initParallaxOnScroll();
   initRipple();
 });
