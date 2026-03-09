@@ -145,6 +145,22 @@ function initShowcaseSwiper() {
   root.addEventListener("mouseleave", () => swiper.autoplay?.start());
 }
 
+function initNavbarScroll() {
+  const nav = document.querySelector("nav");
+  if (!nav) return;
+
+  const updateNav = () => {
+    if (window.scrollY > 20) {
+      nav.classList.add("scrolled");
+    } else {
+      nav.classList.remove("scrolled");
+    }
+  };
+
+  window.addEventListener("scroll", updateNav, { passive: true });
+  updateNav(); // Initial check
+}
+
 function initParallaxOnScroll() {
   const parallaxEls = Array.from(document.querySelectorAll("[data-parallax]"));
   if (!parallaxEls.length) return;
@@ -291,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMouseParallax();
   initTilt();
   initShowcaseSwiper();
+  initNavbarScroll();
   initParallaxOnScroll();
   initRipple();
 });
