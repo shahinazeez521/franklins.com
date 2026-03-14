@@ -362,5 +362,47 @@ document.addEventListener("DOMContentLoaded", () => {
   initParallaxOnScroll();
   initRipple();
   initStudentsSwiper();
+  initTypingAnimation();
 });
+
+function initTypingAnimation() {
+  const words = ["B.TECH", "KEAM", "GATE", "TECHNICAL PSC", "FUTURE"];
+  const typingText = document.querySelector(".typing-text");
+  const typingCursor = document.querySelector(".typing-cursor");
+  
+  if (!typingText || !typingCursor) return;
+
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 100;
+  const deletingSpeed = 50;
+  const delayBetweenWords = 2000;
+
+  function type() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      typingText.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typingText.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let delay = isDeleting ? deletingSpeed : typingSpeed;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      delay = delayBetweenWords;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(type, delay);
+  }
+
+  type();
+}
 
